@@ -7,7 +7,7 @@ const login = (req,res,next)=> {
             res.status(200).json({message:"OK",userId:data._id});
         }
         else {
-            res.status(200).json({Error:"No User Found"});
+            res.status(400).json({Error:"No User Found"});
         }
     })
 }
@@ -17,7 +17,7 @@ const logout = (req,res,next)=> {
             res.status(200).json({message:"Logout Success"});
         }
         else {
-            res.status(200).json({Error:"Wrong Session"});
+            res.status(400).json({Error:"Wrong Session"});
         }
     })
 }
@@ -39,15 +39,15 @@ const register = (req,res,next)=> {
                     userId:req.body._id,
                 })
                 newUser.save((err,data)=> {
-                    if(err) return res.json({Error:err});
+                    if(err) return res.status(400).json({Error:err});
                     return res.json(data);
                 })
             })
             
         }
         else{
-            if(err) return res.json(`Something went wrong, please try again. ${err}`);
-            return res.json({message:"User already exists"});
+            if(err) return res.status(400).json(`Something went wrong, please try again. ${err}`);
+            return res.status(400).json({message:"User already exists"});
         }
     })
 }

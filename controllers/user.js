@@ -8,7 +8,7 @@ const editUser = (req,res,next)=> {
         else {
             data.update({name:req.body.name,birthDate:req.body.birthDate},err=> {
                 if (err) { 
-                    return res.json({message: "Update Error.", error:err});
+                    return res.status(400).json({message: "Update Error.", error:err});
                     }
                     return res.json(data);
             }
@@ -19,7 +19,7 @@ const editUser = (req,res,next)=> {
 const deleteUser = (req,res,next)=> {
     User.deleteOne({_id:req.body.userId},err=> {
         if(err) {
-            return res.json({message: "Delete failed"});
+            return res.status(400).json({message: "Delete failed"});
         }
         return res.json({message: "Delete successful"});
     })
@@ -27,7 +27,7 @@ const deleteUser = (req,res,next)=> {
 const getUsers = (req,res,next)=> {
     User.find({},(err,data)=> {
         if(err){
-            return res.json({Error:err})
+            return res.status(400).json({Error:err})
         }
         return res.json(data);
     })
