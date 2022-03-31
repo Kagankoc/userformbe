@@ -22,7 +22,7 @@ const logout = (req,res,next)=> {
     })
 }
 const register = (req,res,next)=> {
-    Auth.findOne({userName:req.body.name},(err,data)=> {
+    Auth.findOne({userName:req.body.userName},(err,data)=> {
         if(!data) {
             const newAuthUser = new Auth({
                 userName:req.body.userName,
