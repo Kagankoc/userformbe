@@ -2,7 +2,7 @@ const Auth = require("../models/auth");
 const User = require("../models/user");
 
 const login = (req,res,next)=> {
-    Auth.findOne({userName:req.body.name,password:req.body.password},(err,data)=> {
+    Auth.findOne({userName:req.body.userName,password:req.body.password},(err,data)=> {
         if(data){
             res.status(200).json({message:"OK",userId:data._id});
         }
