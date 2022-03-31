@@ -38,9 +38,9 @@ const register = (req,res,next)=> {
                     lastLogin:new Date(),
                     userId:authData._id,
                 })
-                newUser.save((err,data)=> {
+                newUser.save((err,userData)=> {
                     if(err) return res.status(400).json({Error:err});
-                    return res.json(data);
+                    return res.json(userData);
                 })
             })
             
