@@ -25,18 +25,18 @@ const register = (req,res,next)=> {
     Auth.findOne({userName:req.body.name},(err,data)=> {
         if(!data) {
             const newAuthUser = new Auth({
-                userName:req.body.name,
+                userName:req.body.userName,
                 password:req.body.password,
             })
-            newAuthUser.save((err,data)=> {
+            newAuthUser.save((err,authData)=> {
 
                 if(err) return res.json({Error:err});
                 const newUser = new User({
-                    name:req.body.name,
+                    name:req.body.userName,
                     birthDate:new Date(),
                     registerDate:new Date(),
                     lastLogin:new Date(),
-                    userId:req.body._id,
+                    userId:authData._id,
                 })
                 newUser.save((err,data)=> {
                     if(err) return res.status(400).json({Error:err});
