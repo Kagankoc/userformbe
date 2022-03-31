@@ -5,6 +5,9 @@ const userRoutes = require('./routes/user')
 const app = express();
 
 app.use(express.json());
+app.route('/',get(function(res,req){
+    res.sendFile(process.cwd() + '/index.html');
+}))
 app.use('/',authRoutes);
 app.use('/',userRoutes);
 const listener = app.listen(process.env.PORT || 3000, () => {
@@ -14,7 +17,7 @@ const listener = app.listen(process.env.PORT || 3000, () => {
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI  || MONGODB_URI,
+  process.env.MONGODB_URI ,
   {  useUnifiedTopology: true, useNewUrlParser: true ,server: { 
     socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } 
  }, 
