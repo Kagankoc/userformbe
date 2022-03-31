@@ -1,7 +1,7 @@
 const User = require("../models/user");
 
 const editUser = (req,res,next)=> {
-    User.findOne({_id:req.body.userId},(err,data)=> {
+    User.findOne({userId:req.body.userId},(err,data)=> {
         if(err || !data) {
             return res.json({message: "User doesn't exist."});
         }
@@ -17,7 +17,7 @@ const editUser = (req,res,next)=> {
     })
 }
 const deleteUser = (req,res,next)=> {
-    User.deleteOne({_id:req.body.userId},err=> {
+    User.deleteOne({userId:req.body.userId},err=> {
         if(err) {
             return res.status(400).json({message: "Delete failed"});
         }
