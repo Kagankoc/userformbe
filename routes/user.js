@@ -6,8 +6,8 @@ const router =express.Router();
 
 const userController = require('../controllers/user');
 
-router.put('/edit',upload.none(),userController.editUser);
-router.delete('/delete',upload.none(),userController.deleteUser);
-router.get('/users',upload.none(),userController.getUsers);
+router.put('/user/edit',upload.none(),userController.editUser);
+router.delete('/user/delete',upload.none(),userController.deleteUser);
+router.get('/user',upload.none(),userController.getUsers);
 
 module.exports = router;
