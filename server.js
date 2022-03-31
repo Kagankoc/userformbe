@@ -19,9 +19,7 @@ const mongoose = require('mongoose');
 mongoose.connect(
   process.env.MONGODB_URI ,
   {  useUnifiedTopology: true, 
-    useNewUrlParser: true ,
-    server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 }}, 
-    replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } }
+    useNewUrlParser: true 
   },
     (err) => {
         if (err) return console.log("Error: ", err);
